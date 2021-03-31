@@ -6,3 +6,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.NavLink {
+  font-size: 20px;
+  color: currentColor;
+}
+
+.NavLink--active {
+  color: rgb(211, 9, 77);
+}
