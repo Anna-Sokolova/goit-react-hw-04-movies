@@ -1,0 +1,41 @@
+.formSearch {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inputSearch {
+  padding: 20px;
+  border: 1px solid #80b0f8;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 24px;
+  background: #acacac2b;
+  color: rgb(20, 82, 163);
+  font-family: inherit;
+  font-size: 105%;
+  width: calc(100% / 2);
+}
+
+.btnSearch {
+  display: inline-block;
+  text-align: center;
+  margin: 0.5em;
+  border-radius: 20px;
+  border: 1px solid #80b0f8;
+  height: 44px;
+  width: 100px;
+  outline: #80b0f8;
+  background: #7e7a7a2b;
+  color: rgb(20, 82, 163);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btnSearch:hover {
+  background: #7c7c7c6b;
+}

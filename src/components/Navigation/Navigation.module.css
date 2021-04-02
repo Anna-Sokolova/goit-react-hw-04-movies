@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  margin-left: auto;
+}
+
+.navList {
+  display: flex;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+}
+
+.navItem:not(:last-child) {
+  margin-right: 30px;
+}
+
+.NavLink {
+  font-size: 30px;
+  color: #383836;
+}
+
+.NavLinkActive {
+  padding: 10px;
+  border-radius: 20px;
+  color: rgb(20, 82, 163);
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Title from '../components/Title';
+import MovieList from '../components/MovieList';
+import Container from '../components/Container';
 // import axios from 'axios';
 
 class HomePage extends Component {
@@ -24,24 +26,15 @@ class HomePage extends Component {
     console.log(this.props.match.url);
     console.log(this.props.match.path);
 
-    // const imgUrl = 'https://image.tmdb.org/t/p/w300';
+    const imgUrl = 'https://image.tmdb.org/t/p/w300';
     // console.log(imgUrl);
+    const { films } = this.state;
     return (
-      <>
-        <h2>Самые популярные фильмы сегодня</h2>
-        <ul>
-          {this.state.films.map(film => (
-            <li key={film.id}>
-              <Link to={`/movies/${film.id}`}>
-                <div>
-                  <p>{film.title}</p>
-                  {/* <img src={`${imgUrl}${film.poster_path}`} alt={film.title} /> */}
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </>
+      <Container>
+        <Title title="Смотри самые популярные фильмы" />
+
+        <MovieList films={films} />
+      </Container>
     );
   }
 }

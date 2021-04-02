@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import styles from './Reviews.module.css';
 class Reviews extends Component {
   state = {
     reviews: [],
@@ -14,24 +14,29 @@ class Reviews extends Component {
     // console.log(results);
 
     this.setState({ reviews: [...results] });
-    console.log(this.state.reviews);
   }
 
   render() {
+    const { reviews } = this.state;
+
     return (
-      <>
-        <h2>Отзывы</h2>
-        {this.state.reviews.length !== 0 ? (
-          this.state.reviews.map(review => (
-            <li key={review.id}>
-              <p>Атор: {review.author}</p>
-              <p>{review.content}</p>
-            </li>
-          ))
-        ) : (
-          <p>К этому фильму отзывов ещё нет!</p>
-        )}
-      </>
+      <div className={styles.cardReview}>
+
+        <ul className={styles.listReview}>
+          {reviews.length !== 0 ? (
+            reviews.map(({ id, author, content }) => (
+              <li key={id} className={styles.itemReview}>
+                <p className={styles.authorReview}>Атор: {author}</p>
+                <p className={styles.textReview}>{content}</p>
+              </li>
+            ))
+          ) : (
+            <p className={styles.noticeReview}>
+              К этому фильму отзывов ещё нет!
+            </p>
+          )}
+        </ul>
+      </div>
     );
   }
 }

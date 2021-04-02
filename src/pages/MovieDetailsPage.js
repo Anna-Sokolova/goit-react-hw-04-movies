@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import Cast from '../components/Cast';
 import Reviews from '../components/Reviews';
+import Title from '../components/Title';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -24,8 +25,8 @@ class MovieDetailsPage extends Component {
     this.setState({ ...result });
   }
   render() {
-    console.log(this.props.match.url);
-    console.log(this.props.match.path);
+    // console.log(this.props.match.url);
+    // console.log(this.props.match.path);
 
     const {
       title,
@@ -38,20 +39,19 @@ class MovieDetailsPage extends Component {
 
     const imgUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
     // console.log(imgUrl);
-    // console.log(release_date);
-
-    console.log(this.props.match.url);
-    console.log(this.props.match.path);
+    // console.log(this.props.match.url);
+    // console.log(this.props.match.path);
     return (
       <div>
         <div>
+          <Title title="Информация о фильме" />
           <h1>"{title}"</h1>
           {/* <h2> {this.props.match.params.movieId}</h2> */}
           <img src={imgUrl} alt={title} />
-          <p>Дата выпуска: {release_date}</p>
+          {release_date && <p>Дата выпуска: {release_date}</p>}
           {runtime !== 0 && <p>Продолжителньость фильма: {runtime} мин</p>}
           {genres && <p>Жанр: {genres.map(genre => genre.name).join(', ')}</p>}
-          <p>Сюжет: {overview}</p>
+          {overview !== '' && <p>Сюжет: {overview}</p>}
         </div>
         <div>
           <h3>Дополнительная информация</h3>

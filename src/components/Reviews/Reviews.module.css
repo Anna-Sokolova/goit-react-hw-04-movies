@@ -1,0 +1,41 @@
+.cardReview {
+  display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listReview {
+  /*  */
+}
+
+.itemReview {
+  padding: 10px;
+  margin: 15px;
+  background: #dcfaf7;
+  border-radius: 0px 0px 4px 4px;
+  box-shadow: 0px 2px 1px rgb(0 0 0 / 20%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 1px 3px rgb(0 0 0 / 12%);
+}
+
+.authorReview {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  color: rgb(20, 82, 163);
+}
+
+.textReview {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.19;
+  letter-spacing: 0.2px;
+}
+
+.noticeReview {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(20, 82, 163);
+  text-align: center;
+}

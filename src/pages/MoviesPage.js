@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 
 import MovieSearchForm from '../components/MovieSearchForm';
-
+import Title from '../components/Title';
+import MovieList from '../components/MovieList';
+import Container from '../components/Container';
 class MoviesPage extends Component {
   state = {
     searchQuery: '',
@@ -10,9 +12,24 @@ class MoviesPage extends Component {
     error: null,
   };
 
+  componentDidMount() {
+    console.log('componentDidMount');
+
+    const queryParams = queryString.parse(this.props.location.search);
+    console.log(queryParams.searchQuery);
+
+    if (queryParams.search) {
+      this.setState({
+        searchQuery: queryParams.searchQuery,
+      });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate');
+
     if (prevState.searchQuery !== this.state.searchQuery) {
-      this.fetchMovies();
+      this.fetchMovies(this.state.searchQuery);
     }
   }
 
@@ -22,6 +39,11 @@ class MoviesPage extends Component {
       searchQuery: query,
       films: [],
       error: null,
+    });
+
+    this.props.history.push({
+      pathname: this.props.location.pathname,
+      search: `searchQuery=${query}`,
     });
   };
 
@@ -33,7 +55,13 @@ class MoviesPage extends Component {
       `https://api.themoviedb.org/3/search/movie?api_key=5079f7c81cecd12ed5e7da99381ff346&query=${searchQuery}`,
     );
     const { results } = await response.json();
-    // console.log(results);
+    console.log(results);
+
+    if (results.length === 0) {
+      alert('Попробуй-ка ещё разок ;)');
+      return;
+    }
+
     this.setState({
       films: [...results],
     });
@@ -51,31 +79,17 @@ class MoviesPage extends Component {
   }
 
   render() {
-    console.log(this.props.match.url);
-    console.log(this.props.match.path);
-
+    // console.log(this.props.match.url);
+    // console.log(this.props.match.path);
+    const { films } = this.state;
     return (
-      <>
-        <h2>Компонент Поиска</h2>
-        <div>
-          {/* {error && <h1>Ой ошибка, всё пропало!!!</h1>} */}
+      <Container>
+        <Title title="Какой фильм посмотрим сегодня?" />
 
-          <MovieSearchForm onSubmit={this.onChangeQuery} />
+        <MovieSearchForm onSubmit={this.onChangeQuery} />
 
-          <ul>
-            {this.state.films.map(film => (
-              <li key={film.id}>
-                <Link to={`${this.props.match.url}/${film.id}`}>
-                  <div>
-                    <p>{film.title}</p>
-                    {/* <img src={`${imgUrl}${film.poster_path}`} alt={film.title} /> */}
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </>
+        <MovieList films={films} />
+      </Container>
     );
   }
 }
