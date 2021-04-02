@@ -5,7 +5,7 @@ import Container from '../../components/Container';
 import Reviews from '../../components/Reviews';
 import Title from '../../components/Title';
 import styles from './MoviesDetailsPage.module.css';
-
+import routes from '../../routes';
 class MovieDetailsPage extends Component {
   state = {
     title: null,
@@ -26,9 +26,23 @@ class MovieDetailsPage extends Component {
     // console.log(result);
     this.setState({ ...result });
   }
+
+  handleGoBack = () => {
+    const { location, history } = this.props;
+
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
+    history.push(routes.home);
+
+    //или новый метод "опциональная цепочка"
+    // history.push(location?.state?.from || routes.home);
+  };
+
   render() {
     // console.log(this.props.match.url);
     // console.log(this.props.match.path);
+    // console.log(location.state.from);
 
     const {
       title,
@@ -41,11 +55,14 @@ class MovieDetailsPage extends Component {
 
     const imgUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
     // console.log(imgUrl);
-    // console.log(this.props.match.url);
-    // console.log(this.props.match.path);
     return (
       <Container>
         <Title title="Информация о фильме" />
+
+        <button type="button" onClick={this.handleGoBack}>
+          Назад
+        </button>
+
         <div className={styles.card}>
           {/* <h2> {this.props.match.params.movieId}</h2> */}
           <img src={imgUrl} alt={title} />
@@ -54,7 +71,7 @@ class MovieDetailsPage extends Component {
             <h3 className={styles.title}>"{title}"</h3>
             {release_date && (
               <p className={styles.text}>
-                <span className={styles.textTitle}>Дата выпуска:</span>{' '}
+                <span className={styles.textTitle}>Дата выпуска:</span>
                 {release_date}
               </p>
             )}
@@ -62,13 +79,13 @@ class MovieDetailsPage extends Component {
               <p className={styles.text}>
                 <span className={styles.textTitle}>
                   Продолжителньость фильма:
-                </span>{' '}
+                </span>
                 {runtime} мин
               </p>
             )}
             {genres && (
               <p className={styles.text}>
-                <span className={styles.textTitle}>Жанр:</span>{' '}
+                <span className={styles.textTitle}>Жанр:</span>
                 {genres.map(genre => genre.name).join(', ')}
               </p>
             )}
