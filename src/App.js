@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 //pages
-import HomePage from './pages/HomePage';
-import MoviesPage from './pages/MoviesPage';
-import MovieDetailsPage from './pages/MovieDetailsPage';
+import HomePage from './pages/HomePage/HomePage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
+import MovieDetailsPage from './pages/MoviesDetailsPage';
 
 //routes
 import routes from './routes';

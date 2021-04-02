@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
+import Title from '../Title';
+import styles from './Cast.module.css';
+import defaultImg from './actor-default.jpg';
 class Cast extends Component {
   state = {
     cast: [],
@@ -15,26 +18,35 @@ class Cast extends Component {
     this.setState({ cast: [...cast] });
     console.log(this.state.cast);
   }
-  
+
   render() {
-    const imgPosterUrl = `https://image.tmdb.org/t/p/w92/`;
     return (
-      <div>
-        <h1>В фильме снимались:</h1>
-        {this.state.cast &&
-          this.state.cast.map(actor => (
-            <li key={actor.id}>
-              <img
-                src={`${imgPosterUrl}${actor.profile_path}`}
-                alt={actor.name}
-              />
-              <p>{actor.name}</p>
-              <p>В роли:{actor.character}</p>
-            </li>
-          ))}
-      </div>
+      <>
+        <Title title="В фильме снимались:" />
+
+        <ul className={styles.listCast}>
+          {this.state.cast &&
+            this.state.cast.map(({ id, profile_path, name, character }) => {
+              const imgPosterUrl = `https://image.tmdb.org/t/p/w92/${profile_path}`;
+
+              return (
+                <li key={id} className={styles.itemCast}>
+                  <img src={imgPosterUrl} alt={name} />
+                  <div className={styles.cardContent}>
+                    <p className={styles.Actor}>{name}</p>
+                    <p className={styles.Character}>{character}</p>
+                  </div>
+                </li>
+              );
+            })}
+        </ul>
+      </>
     );
   }
 }
+
+// Cast.defaultProps = {
+//   imgPosterUrl: defaultImg,
+// };
 
 export default Cast;

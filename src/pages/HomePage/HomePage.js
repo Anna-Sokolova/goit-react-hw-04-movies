@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Title from '../components/Title';
-import MovieList from '../components/MovieList';
-import Container from '../components/Container';
+import Title from '../../components/Title';
+import MovieList from '../../components/MovieList';
+import Container from '../../components/Container';
 // import axios from 'axios';
 
 class HomePage extends Component {
@@ -23,11 +23,6 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log(this.props.match.url);
-    console.log(this.props.match.path);
-
-    const imgUrl = 'https://image.tmdb.org/t/p/w300';
-    // console.log(imgUrl);
     const { films } = this.state;
     return (
       <Container>

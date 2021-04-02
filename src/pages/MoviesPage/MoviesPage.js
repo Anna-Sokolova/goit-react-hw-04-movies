@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 
-import MovieSearchForm from '../components/MovieSearchForm';
-import Title from '../components/Title';
-import MovieList from '../components/MovieList';
-import Container from '../components/Container';
+import MovieSearchForm from '../../components/MovieSearchForm';
+import Title from '../../components/Title';
+import MovieList from '../../components/MovieList';
+import Container from '../../components/Container';
 class MoviesPage extends Component {
   state = {
     searchQuery: '',

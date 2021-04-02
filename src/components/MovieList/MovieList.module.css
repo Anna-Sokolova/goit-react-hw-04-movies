@@ -4,8 +4,6 @@
   justify-content: center;
   grid-template-columns: repeat(auto-fill, max(300px));
   grid-gap: 35px;
-
-  display: grid;
   max-width: calc(100vw - 48px);
 }
 

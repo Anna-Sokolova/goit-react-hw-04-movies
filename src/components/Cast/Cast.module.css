@@ -1,0 +1,22 @@
+.listCast {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, max(100px));
+  grid-gap: 35px;
+  max-width: calc(100vw - 48px);
+}
+
+.itemCast {
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.Actor {
+  font-size: 16px;
+}
+
+.Character {
+  font-size: 14px;
+  color: rgb(20, 82, 163);
+}
