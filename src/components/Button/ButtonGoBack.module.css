@@ -1,0 +1,15 @@
+.btnGoBack {
+  display: inline-block;
+  text-align: center;
+  margin: 0.5em;
+  border-radius: 20px;
+  border: 1px solid #80b0f8;
+  height: 44px;
+  width: 100px;
+  outline: #80b0f8;
+  background: #7e7a7a2b;
+  color: rgb(20, 82, 163);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}

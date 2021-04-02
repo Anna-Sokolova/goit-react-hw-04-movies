@@ -15,7 +15,7 @@ class HomePage extends Component {
     );
     const data = await response.json();
     const result = await data.results;
-    console.log(result);
+    // console.log(result);
 
     this.setState({
       films: [...result],

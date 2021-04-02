@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Title from '../Title';
 import styles from './Cast.module.css';
 import defaultImg from './actor-default.jpg';
@@ -34,7 +33,7 @@ class Cast extends Component {
               return (
                 <li key={id} className={styles.itemCast}>
                   <img
-                    src={profile_path ? imgPosterUrl : `${defaultImg}`}
+                    src={profile_path ? `${imgPosterUrl}` : `${defaultImg}`}
                     alt={name}
                   />
                   <div className={styles.cardContent}>
@@ -49,10 +48,5 @@ class Cast extends Component {
     );
   }
 }
-
-Cast.defaultProps = {
-  profile_path: defaultImg,
-};
-
 
 export default Cast;

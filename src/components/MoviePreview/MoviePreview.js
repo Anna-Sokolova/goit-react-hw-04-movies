@@ -1,13 +1,17 @@
 import React from 'react';
+import defaultImgPreview from './defaul-img-preview.jpg';
 import styles from './MoviePreview.module.css';
 
 const MoviePreview = ({ title, poster_path }) => {
-  const imgUrl = 'https://image.tmdb.org/t/p/w300';
-  
+  const imgUrlPreview = `https://image.tmdb.org/t/p/w300${poster_path}`;
+
   return (
     <div className={styles.card}>
       <div className={styles.cardThumb}>
-        <img src={`${imgUrl}${poster_path}`} alt={title} />
+        <img
+          src={poster_path ? `${imgUrlPreview}` : `${defaultImgPreview}`}
+          alt={title}
+        />
       </div>
       <div className={styles.cardContent}>
         <h3 className={styles.cardHeading}>{title}</h3>

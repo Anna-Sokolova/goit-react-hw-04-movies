@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Reviews.module.css';
 class Reviews extends Component {
+  static propTypes = {
+    reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
+
   state = {
     reviews: [],
   };
@@ -21,7 +26,6 @@ class Reviews extends Component {
 
     return (
       <div className={styles.cardReview}>
-
         <ul className={styles.listReview}>
           {reviews.length !== 0 ? (
             reviews.map(({ id, author, content }) => (

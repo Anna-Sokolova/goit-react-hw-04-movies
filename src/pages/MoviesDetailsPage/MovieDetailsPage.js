@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
+//routes
+import routes from '../../routes';
+//components
 import Cast from '../../components/Cast';
 import Container from '../../components/Container';
 import Reviews from '../../components/Reviews';
 import Title from '../../components/Title';
+import ButtonGoBack from '../../components/Button';
+//defaultimg
+import defaultImg from './default-img-movie-detail.jpg';
+//styles
 import styles from './MoviesDetailsPage.module.css';
-import routes from '../../routes';
+
 class MovieDetailsPage extends Component {
   state = {
     title: null,
@@ -58,14 +65,14 @@ class MovieDetailsPage extends Component {
     return (
       <Container>
         <Title title="Информация о фильме" />
-
-        <button type="button" onClick={this.handleGoBack}>
-          Назад
-        </button>
+        <ButtonGoBack onClick={this.handleGoBack} />
 
         <div className={styles.card}>
           {/* <h2> {this.props.match.params.movieId}</h2> */}
-          <img src={imgUrl} alt={title} />
+          <img
+            src={backdrop_path ? `${imgUrl}` : `${defaultImg}`}
+            alt={title}
+          />
 
           <div className={styles.content}>
             <h3 className={styles.title}>"{title}"</h3>

@@ -30,6 +30,7 @@ class MovieSearchForm extends Component {
       query: '',
     });
   };
+  
   render() {
     return (
       <>

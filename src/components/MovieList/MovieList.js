@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import MoviePreview from '../MoviePreview';
-
 import styles from './MovieList.module.css';
 
 const MovieList = ({ films, location }) => {
-  
-
   return (
     <ul className={styles.listMovie}>
       {films &&
@@ -26,6 +24,16 @@ const MovieList = ({ films, location }) => {
         ))}
     </ul>
   );
+};
+
+MovieList.propTypes = {
+  films: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 export default withRouter(MovieList);

@@ -11,6 +11,7 @@ import routes from './routes';
 
 //components
 import AppBar from './components/AppBar/AppBar';
+import Loader from './components/Loader/Loader';
 
 //dinamick pages грузятся асинхронно!!!
 const HomePage = lazy(() =>
@@ -28,7 +29,7 @@ const MovieDetailsPage = lazy(() =>
 const App = () => (
   <>
     <AppBar />
-    <Suspense fallback={<h2>Загружаем...</h2>}>
+    <Suspense fallback={<Loader />}>
       <Switch>
         <Route exact path={routes.home} component={HomePage} />
         <Route exact path={routes.movies} component={MoviesPage} />
