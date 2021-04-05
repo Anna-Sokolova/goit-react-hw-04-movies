@@ -10,7 +10,7 @@ import Title from '../../components/Title';
 import ButtonGoBack from '../../components/Button';
 import Loader from '../../components/Loader/Loader';
 //defaultimg
-import defaultImg from './default-img-movie-detail.jpg';
+import defaultImgMovieDetails from '../../images/defaultImages/default-img-movie-detail.jpg';
 //styles
 import styles from './MoviesDetailsPage.module.css';
 
@@ -78,7 +78,7 @@ class MovieDetailsPage extends Component {
         <div className={styles.card}>
           {/* <h2> {this.props.match.params.movieId}</h2> */}
           <img
-            src={backdrop_path ? `${imgUrl}` : `${defaultImg}`}
+            src={backdrop_path ? `${imgUrl}` : `${defaultImgMovieDetails}`}
             alt={title}
           />
 
@@ -115,12 +115,22 @@ class MovieDetailsPage extends Component {
           <Title title="Дополнительная информация" />
           <ul className={styles.addInfo}>
             <li className={styles.itemInfo}>
-              <Link to={`${this.props.match.url}/cast`}>
+              <Link
+                to={{
+                  pathname: `${this.props.match.url}/cast`,
+                  state: { ...this.props.location.state },
+                }}
+              >
                 <span className={styles.textTitle}>Актерский состав</span>
               </Link>
             </li>
             <li className={styles.itemInfo}>
-              <Link to={`${this.props.match.url}/reviews`}>
+              <Link
+                to={{
+                  pathname: `${this.props.match.url}/reviews`,
+                  state: { ...this.props.location.state },
+                }}
+              >
                 <span className={styles.textTitle}>Отзывы</span>
               </Link>
             </li>

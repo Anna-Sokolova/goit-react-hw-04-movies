@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Title from '../Title';
 import styles from './Cast.module.css';
-import defaultImg from './actor-default.jpg';
+import defaultImgActor from '../../images/defaultImages/default-actor.jpg';
 class Cast extends Component {
   state = {
     cast: [],
@@ -33,7 +33,9 @@ class Cast extends Component {
               return (
                 <li key={id} className={styles.itemCast}>
                   <img
-                    src={profile_path ? `${imgPosterUrl}` : `${defaultImg}`}
+                    src={
+                      profile_path ? `${imgPosterUrl}` : `${defaultImgActor}`
+                    }
                     alt={name}
                   />
                   <div className={styles.cardContent}>

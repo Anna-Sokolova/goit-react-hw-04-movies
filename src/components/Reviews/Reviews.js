@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Reviews.module.css';
 class Reviews extends Component {
-  static propTypes = {
-    reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  static defaultProps = {
+    reviews: [],
   };
 
+  static propTypes = {
+    reviews: PropTypes.arrayOf(PropTypes.object),
+  };
   state = {
     reviews: [],
   };

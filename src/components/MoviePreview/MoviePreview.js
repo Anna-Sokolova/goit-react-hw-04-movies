@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImgPreview from './defaul-img-preview.jpg';
+import defaultImgPreview from '../../images/defaultImages/default-img-preview.jpg';
 import styles from './MoviePreview.module.css';
 
 const MoviePreview = ({ title, poster_path }) => {
