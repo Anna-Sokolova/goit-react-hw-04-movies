@@ -1,18 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Link, Route } from 'react-router-dom';
 //routes
 import routes from '../../routes';
 //components
-import Cast from '../../components/Cast';
+// import Cast from '../../components/Cast';
+// import Reviews from '../../components/Reviews';
 import Container from '../../components/Container';
-import Reviews from '../../components/Reviews';
 import Title from '../../components/Title';
 import ButtonGoBack from '../../components/Button';
+import Loader from '../../components/Loader/Loader';
 //defaultimg
 import defaultImg from './default-img-movie-detail.jpg';
 //styles
 import styles from './MoviesDetailsPage.module.css';
 
+//dynamic loading of components
+const Cast = lazy(() =>
+  import('../../components/Cast' /* webpackChunkName: "cast" */),
+);
+const Reviews = lazy(() =>
+  import('../../components/Reviews' /* webpackChunkName: "reviews" */),
+);
 class MovieDetailsPage extends Component {
   state = {
     title: null,
@@ -118,11 +126,13 @@ class MovieDetailsPage extends Component {
             </li>
           </ul>
 
-          <Route path={`${this.props.match.path}/cast`} component={Cast} />
-          <Route
-            path={`${this.props.match.path}/reviews`}
-            component={Reviews}
-          />
+          <Suspense fallback={<Loader />}>
+            <Route path={`${this.props.match.path}/cast`} component={Cast} />
+            <Route
+              path={`${this.props.match.path}/reviews`}
+              component={Reviews}
+            />
+          </Suspense>
         </div>
       </Container>
     );
