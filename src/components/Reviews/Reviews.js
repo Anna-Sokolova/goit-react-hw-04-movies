@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import movieApi from '../../services/movieApi';
 import styles from './Reviews.module.css';
 class Reviews extends Component {
   static defaultProps = {
@@ -9,17 +10,14 @@ class Reviews extends Component {
   static propTypes = {
     reviews: PropTypes.arrayOf(PropTypes.object),
   };
+  
   state = {
     reviews: [],
   };
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=5079f7c81cecd12ed5e7da99381ff346`,
-    );
-    const { results } = await response.json();
-    // console.log(results);
+    const results = await movieApi.fetchReviews(movieId);
 
     this.setState({ reviews: [...results] });
   }

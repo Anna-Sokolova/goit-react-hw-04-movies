@@ -3,14 +3,14 @@ import { Link, Route } from 'react-router-dom';
 //routes
 import routes from '../../routes';
 //components
-// import Cast from '../../components/Cast';
-// import Reviews from '../../components/Reviews';
 import Container from '../../components/Container';
 import Title from '../../components/Title';
 import ButtonGoBack from '../../components/Button';
 import Loader from '../../components/Loader/Loader';
 //defaultimg
 import defaultImgMovieDetails from '../../images/defaultImages/default-img-movie-detail.jpg';
+//services
+import movieApi from '../../services/movieApi';
 //styles
 import styles from './MoviesDetailsPage.module.css';
 
@@ -32,14 +32,14 @@ class MovieDetailsPage extends Component {
   };
 
   async componentDidMount() {
-    const { movieId } = this.props.match.params;
+    try {
+      const { movieId } = this.props.match.params;
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=5079f7c81cecd12ed5e7da99381ff346&language=ru-RU`,
-    );
-    const result = await response.json();
-    // console.log(result);
-    this.setState({ ...result });
+      const result = await movieApi.fetchDetailsMovie(movieId);
+      this.setState({ ...result });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleGoBack = () => {

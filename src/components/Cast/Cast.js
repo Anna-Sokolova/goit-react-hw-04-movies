@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import movieApi from '../../services/movieApi';
 import Title from '../Title';
 import styles from './Cast.module.css';
 import defaultImgActor from '../../images/defaultImages/default-actor.jpg';
@@ -9,11 +10,7 @@ class Cast extends Component {
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=5079f7c81cecd12ed5e7da99381ff346&language=ru-RU`,
-    );
-    const result = await response.json();
-    const cast = result.cast;
+    const cast = await movieApi.fetchCast(movieId);
 
     this.setState({ cast: [...cast] });
     // console.log(this.state.cast);

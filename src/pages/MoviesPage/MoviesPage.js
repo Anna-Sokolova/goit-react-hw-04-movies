@@ -5,6 +5,7 @@ import MovieSearchForm from '../../components/MovieSearchForm';
 import Title from '../../components/Title';
 import MovieList from '../../components/MovieList';
 import Container from '../../components/Container';
+import movieApi from '../../services/movieApi';
 class MoviesPage extends Component {
   state = {
     searchQuery: '',
@@ -34,7 +35,7 @@ class MoviesPage extends Component {
       films: [],
     });
 
-    //сохраняем историю запроса
+    //сохраняем историю запроса при сабмите с формы
     this.props.history.push({
       pathname: this.props.location.pathname,
       search: `searchQuery=${query}`,
@@ -42,22 +43,21 @@ class MoviesPage extends Component {
   };
 
   async fetchMovies() {
-    const { searchQuery } = this.state;
+    try {
+      const { searchQuery } = this.state;
+      const results = await movieApi.fetchMovieBySearch(searchQuery);
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=5079f7c81cecd12ed5e7da99381ff346&query=${searchQuery}`,
-    );
-    const { results } = await response.json();
-    // console.log(results);
+      if (results.length === 0) {
+        alert('Попробуй-ка ещё разок ;)');
+        return;
+      }
 
-    if (results.length === 0) {
-      alert('Попробуй-ка ещё разок ;)');
-      return;
+      this.setState({
+        films: [...results],
+      });
+    } catch (error) {
+      console.log(error);
     }
-
-    this.setState({
-      films: [...results],
-    });
   }
 
   render() {
